@@ -29,12 +29,23 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse nod
 
 - Make one main flow from left to right with `direction: right`.
 - If every box inside a group gets or sends the same message, draw one edge to or from the group. Draw one edge to each box only when the messages differ.
-- Split a box that both sends and receives on the main flow into an "in" box and an "out" box. The "in" box receives and the "out" box sends. Name them "<name> in" and "<name> out", and put both in the same group.
+- A box that receives from the left and sends to the right is a normal step on the main flow. Do not split it. A gateway, a sender or an outbox is such a step.
+- Split a box only when one of its edges must go back to the left, to a box earlier in the main flow. Make an "in" box for the edges that it receives and an "out" box for the edges that it sends. Name them "<name> in" and "<name> out".
+- Draw no edge between the two halves, because the facts give none. Put both halves in a group named after the box, such as `transport: Transport {in: Transport in; out: Transport out}`. Do not set `grid-columns` on this group. The frame shows that the halves are one part.
 - Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box. If a split box closes a loop across the page, do not split it. Write the return as a note. If one box is at both ends of the flow, draw it once at the start. Write the return as a note on the last box.
 - An edge must not run around a group. If it does, move the boxes or split the diagram.
 - Keep groups compact. Do not draw a frame with large empty areas. Set `grid-columns` on a group whose edges go to the group itself. An edge to a box inside a grid group breaks the ELK layout. If ELK pushes one box far from the others, move that box out of the group.
+- ELK puts the boxes of a group in columns from left to right. A box with an edge that leaves the group goes to the group's left or right side. So a group is as tall as its tallest column. A tall column next to single boxes leaves empty corners in the frame.
+- Keep the columns of a group close in height. Give a grid group of up to 4 boxes one row: set `grid-columns` to the number of its boxes. Never use `grid-columns: 1` for more than 2 boxes. Use more rows only for more than 4 boxes, or when step 4 below applies. Do not stack more than 3 groups in one column.
+- Draw no group around the whole system that the diagram shows. The title names the system. Such a group is almost a frame around the page, and ELK leaves empty corners in it.
 - Keep edge labels to two or three words.
-- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide. The top-left title takes its own column as wide as the title, so keep it short. If the PNG is still too wide, put boxes that get the same edge into one group. Then remove boxes or split the diagram.
+- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide.
+- Keep every word of every label that the facts give. Never shorten a label to fit the width. If the PNG is too wide, do these steps in order, and render again after each step:
+  1. Break each label of more than two words into lines of one to three words with `\n`.
+  2. Shorten the title. The top-left title takes its own column as wide as the title.
+  3. Put boxes that get the same edge into one group.
+  4. Give a grid group of 4 boxes two rows. A group of 3 boxes stays in one row.
+  5. Split the diagram into two diagrams.
 
 **Colour carries meaning.** Give each kind of part one fill. Use the same colours in every diagram. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file, and replace the title:
 

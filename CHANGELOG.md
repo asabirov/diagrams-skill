@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **Compact group frames.** The skill says why ELK leaves empty corners in a group frame. A grid group of up to 4 boxes gets one row, and no group stacks more than 3 groups in one column. The agent draws no group around the whole system, because the title names it.
+
+- **Full labels.** The agent keeps every word of every label. If the PNG is wider than 8000 px, it breaks labels into lines, shortens the title, groups boxes, uses two grid rows, and only then splits the diagram. It no longer removes boxes to fit the width.
+
+- **Split rule.** A box that receives from the left and sends to the right is not split. The agent splits a box only when one of its edges goes back to an earlier box. It draws no edge between the halves, and puts them in a group named after the box.
+
 ## 0.4.0 — 2026-10-28
 
 ### Changed
