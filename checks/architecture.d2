@@ -1,0 +1,46 @@
+# Online shop architecture: the same diagram as checks/architecture.mmd.
+direction: right
+(** -> **)[*].style.stroke: "#57606A"
+
+classes: {
+  # outside: people, browsers and other companies' systems
+  outside: {style: {fill: "#ECEAE4"; stroke: "#6B675F"; font-color: "#1F2328"}}
+  # way in: what first receives a request, such as a web app, API or queue
+  way-in: {style: {fill: "#DCEAF7"; stroke: "#2F6596"; font-color: "#1F2328"}}
+  # core: the services and jobs that do the work
+  core: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+  # records: databases, files and other stored data
+  records: {style: {fill: "#F8EBCB"; stroke: "#8F6A12"; font-color: "#1F2328"}}
+  # group: a boundary around boxes, such as a system or a team
+  group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
+}
+
+browser: Customer browser {class: outside}
+
+shop: Shop {
+  class: group
+  web: Web app {class: way-in}
+  orders: Orders service {class: core}
+  db: Orders database {shape: cylinder; class: records}
+  web -> orders: place order
+  orders -> db: read and write
+}
+
+external: External providers {
+  class: group
+  pay: Payment provider {class: outside}
+  mail: Email service {class: outside}
+}
+
+browser -> shop.web: HTTPS
+shop.orders -> external.pay: charge card
+shop.orders -> external.mail: send receipt
+
+vars: {
+  d2-legend: {
+    a: Outside {class: outside}
+    b: Way in {class: way-in}
+    c: Core {class: core}
+    d: Records {shape: cylinder; class: records}
+  }
+}
