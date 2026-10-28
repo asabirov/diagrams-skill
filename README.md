@@ -1,11 +1,13 @@
 # mermaid-diagrams-skill
 
-Readable Mermaid diagrams with a consistent visual style.
+Readable diagrams with a consistent visual style: D2 in a hand-drawn style for
+architecture and flows, Mermaid for sequences and states.
 
 This is an agent skill. When someone has to review architecture, states,
 conditional logic, an exchange of messages or a customer journey, the agent
-picks the diagram type that fits the question. It renders the diagram in a
-light and a dark theme, then checks the rendered images before showing them.
+picks the diagram type that fits the question. It draws architecture and flow
+diagrams with D2, and sequence and state diagrams with Mermaid in a light and a
+dark theme. It checks the rendered images before showing them.
 
 ## Why it exists, and what it turned down
 
@@ -26,6 +28,10 @@ What it turned down:
 - **Parsing as proof.** A diagram that parses can still clip text or hide a
   label under a connector. The skill counts only an inspected render as
   verified.
+- **Mermaid flowcharts for architecture.** Their layouts often loop lines
+  around the page. D2 with the ELK layout gave the cleanest layout of the free
+  tools tested (D2, Graphviz, LikeC4, Mermaid, Excalidraw). Its sketch mode
+  gives a hand-drawn look.
 - **Review-page building.** The skill makes diagrams. It does not build the
   page they are reviewed on, and it does not depend on any other skill.
 
@@ -51,6 +57,7 @@ shares verified images.
 | `SKILL.md` | The rules the agent follows: view choice, appearance, presentation, render and verify |
 | `assets/light.json`, `assets/dark.json` | Mermaid CLI configuration for each theme |
 | `checks/*.mmd` | Five example diagrams about a fictional online shop, one per view, used to check a theme or renderer change |
+| `checks/architecture.d2` | The architecture example in D2, with the colour palette and legend |
 | `CHANGELOG.md` | What changed in each release |
 
 The skill version is recorded in `metadata.version` in [SKILL.md](SKILL.md).
@@ -76,6 +83,8 @@ Dependencies:
 | Claude Code or Codex | Running the skill |
 | [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) (`@mermaid-js/mermaid-cli`, tested with 11.16.0) | Rendering diagrams to SVG with the light and dark themes. Without it the agent can write diagrams but cannot render or check them |
 | The headless Chrome that Mermaid CLI downloads on install | Mermaid CLI draws each diagram in it |
+| [D2](https://d2lang.com) (tested with 0.8.1) | Drawing architecture and flow diagrams. Without it the agent draws Mermaid flowcharts |
+| [Playwright CLI](https://playwright.dev) with its Chromium headless shell (tested with 1.63.0) | Turning a D2 SVG into a PNG, because D2's own PNG export can hang |
 | Geist font (optional) | Diagram text. Arial is used when Geist is not installed |
 
 Install Mermaid CLI with:
@@ -121,7 +130,11 @@ state-dark.svg
 state-light.svg
 ```
 
-Ten files mean every example parsed and rendered. They do not prove the
+Render the D2 example with the commands in the "Render and verify" section of
+[SKILL.md](SKILL.md), from a copy of `checks/architecture.d2` named
+`diagram.d2`.
+
+Ten files mean every Mermaid example parsed and rendered. They do not prove the
 diagrams look right. Open each one on a page of the matching background
 colour. Check the branch labels, the blue and teal fills, the subgraph borders
 and the text at desktop and tablet widths.
