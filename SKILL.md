@@ -28,13 +28,13 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse nod
 **Shape the diagram so the layout stays clean.** Most long or looping lines come from the shape of the diagram, not from the tool.
 
 - Make one main flow from left to right with `direction: right`.
-- If every box inside a group gets the same message, draw one edge to the group. Draw one edge to each box only when the messages differ.
+- If every box inside a group gets or sends the same message, draw one edge to or from the group. Draw one edge to each box only when the messages differ.
 - Split a box that both sends and receives on the main flow into an "in" box and an "out" box. The "in" box receives and the "out" box sends. Name them "<name> in" and "<name> out", and put both in the same group.
 - Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box. If a split box closes a loop across the page, do not split it. Write the return as a note. If one box is at both ends of the flow, draw it once at the start. Write the return as a note on the last box.
 - An edge must not run around a group. If it does, move the boxes or split the diagram.
 - Keep groups compact. Do not draw a frame with large empty areas. Set `grid-columns` on a group whose edges go to the group itself. An edge to a box inside a grid group breaks the ELK layout. If ELK pushes one box far from the others, move that box out of the group.
 - Keep edge labels to two or three words.
-- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide. The top-left title takes its own column of about 1000 px, so keep it short. If the PNG is still too wide, put boxes that get the same edge into one group. Then remove boxes or split the diagram.
+- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide. The top-left title takes its own column as wide as the title, so keep it short. If the PNG is still too wide, put boxes that get the same edge into one group. Then remove boxes or split the diagram.
 
 **Colour carries meaning.** Give each kind of part one fill. Use the same colours in every diagram. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file, and replace the title:
 
@@ -105,7 +105,7 @@ size=$(grep -o -E 'width="[0-9]+" height="[0-9]+"' diagram.svg | head -1 | tr -c
 playwright screenshot --viewport-size "$size" "file://$PWD/diagram.svg" diagram.png
 ```
 
-`--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. Look at the PNG before you send it. Check that the PNG is at most 8000 px wide, so that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and 0.8.2 and Playwright 1.63.0. Record the versions you used.
+`--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. If Playwright asks for a newer headless shell, run `playwright install --only-shell chromium`. Look at the PNG before you send it. Check that the PNG is at most 8000 px wide, so that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and 0.8.2 and Playwright 1.63.0. Record the versions you used.
 
 Mermaid requires Mermaid CLI (`mmdc`) with Node.js and the browser it drives, or another renderer. Use what is already installed. The themes are tested with Mermaid CLI 11.16.0; record the version you used.
 
