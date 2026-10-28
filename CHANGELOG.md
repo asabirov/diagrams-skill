@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **New name.** The skill is now `diagrams`, and the repository is `asabirov/diagrams-skill`. The skill draws D2 and Mermaid diagrams, not only Mermaid.
+
+- **Title inside the picture.** The agent puts the title at the top left of a D2 picture. A page that shows the picture needs no caption of its own.
+
+- **Legend only on request.** The agent draws no legend unless the reader asks for one.
+
+- **Two-way edges.** Edges with arrows at both ends get the same grey stroke as one-way edges. Before, D2 drew them blue.
+
+- **Layout rules.** The agent names split boxes "<name> in" and "<name> out" in the same group, keeps groups compact, and does not run an edge around a group. The text must stay readable at 2000 px wide. If it does not, the agent removes boxes or splits the diagram.
+
+### Added
+
+- **Release notice.** Each merge to `main` tells agents-home, so that its pin of this skill moves without the daily sync.
+
 ## 0.3.0 — 2026-10-28
 
 ### Added

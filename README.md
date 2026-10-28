@@ -1,4 +1,4 @@
-# mermaid-diagrams-skill
+# diagrams-skill
 
 Readable diagrams with a consistent visual style: D2 in a hand-drawn style for
 architecture and flows, Mermaid for sequences and states.
@@ -57,8 +57,9 @@ shares verified images.
 | `SKILL.md` | The rules the agent follows: view choice, appearance, presentation, render and verify |
 | `assets/light.json`, `assets/dark.json` | Mermaid CLI configuration for each theme |
 | `checks/*.mmd` | Five example diagrams about a fictional online shop, one per view, used to check a theme or renderer change |
-| `checks/architecture.d2` | The architecture example in D2, with the colour palette and legend |
+| `checks/architecture.d2` | The architecture example in D2, with the colour palette and the title inside the picture |
 | `CHANGELOG.md` | What changed in each release |
+| `.github/workflows/notify-claude-2.yml` | Tells agents-home about each merge to `main`, so that it can move its pin of this skill |
 
 The skill version is recorded in `metadata.version` in [SKILL.md](SKILL.md).
 [CHANGELOG.md](CHANGELOG.md) records the changes for each version.

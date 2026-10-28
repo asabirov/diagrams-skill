@@ -1,5 +1,5 @@
 ---
-name: mermaid-diagrams
+name: diagrams
 description: Use when preparing diagrams for architecture, flows, states, conditional logic, interactions, or customer journeys that a human needs to review. Draws architecture and flow diagrams with D2 in the hand-drawn style, and sequence and state diagrams with Mermaid. Not for screenshots, UI prototypes, or simple facts clearer in prose.
 metadata:
   version: "0.3.0"
@@ -21,7 +21,7 @@ Each diagram answers one question at a readable size. Keep the editable `.d2` or
 
 Use D2 for architecture and flow diagrams, because its ELK layout and sketch style read better than Mermaid flowcharts. Use Mermaid for sequence and state diagrams, and when a host must render the source itself, such as a GitHub comment. If D2 is not installed, draw a Mermaid flowchart and say so.
 
-Label conditions and meaningful transitions. For alternative diagrams, reuse node IDs for the same steps. Say briefly whether the diagram shows proposed or observed behavior, and what is uncertain. Skip captions that repeat the diagram. Never invent journey scores, and never treat a timeout as proof that work stopped.
+Label conditions and meaningful transitions. For alternative diagrams, reuse node IDs for the same steps. Say briefly whether the diagram shows proposed or observed behavior, and what is uncertain. Put the title inside the picture, at the top left. A page that shows the picture then needs no caption of its own. Never invent journey scores, and never treat a timeout as proof that work stopped.
 
 ## D2 diagrams
 
@@ -29,15 +29,25 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse nod
 
 - Make one main flow from left to right with `direction: right`.
 - If every box inside a group gets the same message, draw one edge to the group. Draw one edge to each box only when the messages differ.
-- Split a box that both sends and receives on the main flow into an "in" box and an "out" box.
+- Split a box that both sends and receives on the main flow into an "in" box and an "out" box. Name them "<name> in" and "<name> out", and put both in the same group.
 - Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box.
+- An edge must not run around a group. If it does, move the boxes or split the diagram.
+- Keep groups compact. Do not draw a frame with large empty areas.
 - Keep edge labels to two or three words.
+- The text must stay readable when the picture is 2000 px wide. If it is not, remove boxes or split the diagram.
 
-**Colour carries meaning.** Give each kind of part one fill. Use the same colours in every diagram, and add the legend below with only the kinds that the diagram uses. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file:
+**Colour carries meaning.** Give each kind of part one fill. Use the same colours in every diagram. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file, and replace the title:
 
 ```d2
 direction: right
 (** -> **)[*].style.stroke: "#57606A"
+(** <-> **)[*].style.stroke: "#57606A"
+
+title: "Orders: how a request is stored" {
+  near: top-left
+  shape: text
+  style: {font-size: 28; bold: true; font-color: "#1F2328"}
+}
 
 classes: {
   # outside: people, browsers and other companies' systems
@@ -51,7 +61,13 @@ classes: {
   # group: a boundary around boxes, such as a system or a team
   group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
 }
+```
 
+The second stroke line gives two-way edges the same grey as one-way edges. Without it, D2 draws them blue. Set `class` on each box, including the boxes inside a group. Draw records as `shape: cylinder`. [checks/architecture.d2](checks/architecture.d2) shows the full pattern.
+
+Draw no legend unless the reader asks for one. Then add only the kinds that the diagram uses:
+
+```d2
 vars: {
   d2-legend: {
     a: Outside {class: outside}
@@ -61,8 +77,6 @@ vars: {
   }
 }
 ```
-
-Set `class` on each box, including the boxes inside a group. Draw records as `shape: cylinder`. [checks/architecture.d2](checks/architecture.d2) shows the full pattern.
 
 ## Mermaid appearance
 
@@ -88,12 +102,12 @@ size=$(grep -o -E 'width="[0-9]+" height="[0-9]+"' diagram.svg | head -1 | tr -c
 playwright screenshot --viewport-size "$size" "file://$PWD/diagram.svg" diagram.png
 ```
 
-`--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. Look at the PNG before you send it. Fix crossing lines, lines that go around the page, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and Playwright 1.63.0. Record the versions you used.
+`--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. Look at the PNG before you send it. Check that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and Playwright 1.63.0. Record the versions you used.
 
 Mermaid requires Mermaid CLI (`mmdc`) with Node.js and the browser it drives, or another renderer. Use what is already installed. The themes are tested with Mermaid CLI 11.16.0; record the version you used.
 
 ```sh
-mmdc -i /path/to/diagram.mmd -o /path/to/diagram-light.svg -c /path/to/mermaid-diagrams/assets/light.json -b transparent
+mmdc -i /path/to/diagram.mmd -o /path/to/diagram-light.svg -c /path/to/diagrams/assets/light.json -b transparent
 ```
 
 Render the dark version with `dark.json`. Include `accTitle` and `accDescr`, and give the image useful alt text where it is shown. Look at both themes at the intended desktop and tablet sizes for clipped text, overlaps, labels crossing connectors and weak contrast. Test any viewer by touch, click and keyboard. Keep the renderer version and the evidence with the task. A diagram that parses has not been checked visually; mark unrendered work as unverified. Markdown hosts such as GitHub ignore these themes, so use verified images when appearance matters.

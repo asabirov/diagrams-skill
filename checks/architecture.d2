@@ -1,6 +1,13 @@
 # Online shop architecture: the same diagram as checks/architecture.mmd.
 direction: right
 (** -> **)[*].style.stroke: "#57606A"
+(** <-> **)[*].style.stroke: "#57606A"
+
+title: "Online shop: how an order flows" {
+  near: top-left
+  shape: text
+  style: {font-size: 28; bold: true; font-color: "#1F2328"}
+}
 
 classes: {
   # outside: people, browsers and other companies' systems
@@ -35,12 +42,3 @@ external: External providers {
 browser -> shop.web: HTTPS
 shop.orders -> external.pay: charge card
 shop.orders -> external.mail: send receipt
-
-vars: {
-  d2-legend: {
-    a: Outside {class: outside}
-    b: Way in {class: way-in}
-    c: Core {class: core}
-    d: Records {shape: cylinder; class: records}
-  }
-}
