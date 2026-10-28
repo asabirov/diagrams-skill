@@ -12,7 +12,7 @@
 
 - **Two-way edges.** Edges with arrows at both ends get the same grey stroke as one-way edges. Before, D2 drew them blue.
 
-- **Layout rules.** The agent names split boxes "<name> in" and "<name> out" in the same group, keeps groups compact, and does not run an edge around a group. The text must stay readable at 2000 px wide. If it does not, the agent removes boxes or splits the diagram.
+- **Layout rules.** The agent names split boxes "<name> in" and "<name> out" in the same group, keeps groups compact, and does not run an edge around a group. A split box that closes a loop across the page stays one box with a note. The base block sets larger text, and a PNG at `--scale 2` stays at most 8000 px wide, so that the text is readable at 2000 px wide. If it is wider, the agent removes boxes or splits the diagram.
 
 ### Added
 

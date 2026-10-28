@@ -29,12 +29,12 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse nod
 
 - Make one main flow from left to right with `direction: right`.
 - If every box inside a group gets the same message, draw one edge to the group. Draw one edge to each box only when the messages differ.
-- Split a box that both sends and receives on the main flow into an "in" box and an "out" box. Name them "<name> in" and "<name> out", and put both in the same group.
-- Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box.
+- Split a box that both sends and receives on the main flow into an "in" box and an "out" box. The "in" box receives and the "out" box sends. Name them "<name> in" and "<name> out", and put both in the same group.
+- Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box. If a split box closes a loop across the page, do not split it. Write the return as a note.
 - An edge must not run around a group. If it does, move the boxes or split the diagram.
-- Keep groups compact. Do not draw a frame with large empty areas.
+- Keep groups compact. Do not draw a frame with large empty areas. Set `grid-columns` on a group of boxes that get the same kind of edge. If ELK pushes one box far from the others, move that box out of the group.
 - Keep edge labels to two or three words.
-- The text must stay readable when the picture is 2000 px wide. If it is not, remove boxes or split the diagram.
+- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide. If it is wider, remove boxes or split the diagram.
 
 **Colour carries meaning.** Give each kind of part one fill. Use the same colours in every diagram. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file, and replace the title:
 
@@ -42,11 +42,14 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse nod
 direction: right
 (** -> **)[*].style.stroke: "#57606A"
 (** <-> **)[*].style.stroke: "#57606A"
+(** -> **)[*].style.font-size: 24
+(** <-> **)[*].style.font-size: 24
+**.style.font-size: 28
 
 title: "Orders: how a request is stored" {
   near: top-left
   shape: text
-  style: {font-size: 28; bold: true; font-color: "#1F2328"}
+  style: {font-size: 40; bold: true; font-color: "#1F2328"}
 }
 
 classes: {
@@ -63,7 +66,7 @@ classes: {
 }
 ```
 
-The second stroke line gives two-way edges the same grey as one-way edges. Without it, D2 draws them blue. Set `class` on each box, including the boxes inside a group. Draw records as `shape: cylinder`. [checks/architecture.d2](checks/architecture.d2) shows the full pattern.
+The second stroke line gives two-way edges the same grey as one-way edges. Without it, D2 draws them blue. The font-size lines make the text large enough to stay readable at 2000 px wide. Set `class` on each box, including the boxes inside a group. Draw records as `shape: cylinder`. [checks/architecture.d2](checks/architecture.d2) is a full example. The rules in this file are complete without it.
 
 Draw no legend unless the reader asks for one. Then add only the kinds that the diagram uses:
 
@@ -102,7 +105,7 @@ size=$(grep -o -E 'width="[0-9]+" height="[0-9]+"' diagram.svg | head -1 | tr -c
 playwright screenshot --viewport-size "$size" "file://$PWD/diagram.svg" diagram.png
 ```
 
-`--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. Look at the PNG before you send it. Check that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and Playwright 1.63.0. Record the versions you used.
+`--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. Look at the PNG before you send it. Check that the PNG is at most 8000 px wide, so that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and 0.8.2 and Playwright 1.63.0. Record the versions you used.
 
 Mermaid requires Mermaid CLI (`mmdc`) with Node.js and the browser it drives, or another renderer. Use what is already installed. The themes are tested with Mermaid CLI 11.16.0; record the version you used.
 
