@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0 — 2026-10-28
+
+### Added
+
+- **D2 diagrams.** The agent draws architecture and flow diagrams with D2, with the ELK layout and the hand-drawn sketch style. Mermaid stays for sequence and state diagrams, and for hosts that render the source themselves. If D2 is missing, the agent draws a Mermaid flowchart and says so.
+
+- **Colour palette.** Each kind of part has one soft fill: grey for the outside, blue for the way in, green for the core and sand for stored records. A small legend names each colour.
+
+- **Clean layout rules.** The skill tells the agent how to shape a diagram so that lines stay short and labels stay off borders, and how to render a PNG through Playwright because D2's own PNG export can hang.
+
 ## 0.2.1 — 2026-10-06
 
 ### Changed

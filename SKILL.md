@@ -2,7 +2,7 @@
 name: mermaid-diagrams
 description: Use when preparing diagrams for architecture, flows, states, conditional logic, interactions, or customer journeys that a human needs to review. Draws architecture and flow diagrams with D2 in the hand-drawn style, and sequence and state diagrams with Mermaid. Not for screenshots, UI prototypes, or simple facts clearer in prose.
 metadata:
-  version: "0.2.1"
+  version: "0.3.0"
 ---
 
 # Diagrams
