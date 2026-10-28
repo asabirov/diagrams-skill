@@ -68,7 +68,7 @@ classes: {
 
 The second stroke line gives two-way edges the same grey as one-way edges. Without it, D2 draws them blue. The font-size lines make the text large enough to stay readable at 2000 px wide. Set `class` on each box, including the boxes inside a group. Draw records as `shape: cylinder`. [checks/architecture.d2](checks/architecture.d2) is a full example. The rules in this file are complete without it.
 
-Draw no legend unless the reader asks for one. Then add only the kinds that the diagram uses:
+Draw no legend in a D2 or Mermaid diagram unless the reader asks for one. In D2, add only the kinds that the diagram uses:
 
 ```d2
 vars: {
@@ -87,7 +87,7 @@ Use [assets/light.json](assets/light.json) and [assets/dark.json](assets/dark.js
 
 Use soft fills without decorative node outlines. Branch labels need an opaque background and space around them so connectors do not cross the text; check both themes. Around a diagram, avoid numbered sections, repeated metadata, divider lines, nested borders and collapsible blocks.
 
-Default to solid links. Non-solid links must mark needed distinctions, including optional steps. Explain each meaning in edge labels. Otherwise, use captions or legends. Flowcharts use solid `-->` and dotted `-.->`. Sequence `->>` messages are solid. Keep dotted `-->>` replies, solid async `-)` arrows, and dotted async `--)` arrows. When `->>` or `-->>` messages mix with `-)` or `--)` messages, label sync, reply, and async messages in their text or a legend. Never add dotted or dashed decoration.
+Default to solid links. Non-solid links must mark needed distinctions, including optional steps. Explain each meaning in edge labels or in a caption. Flowcharts use solid `-->` and dotted `-.->`. Sequence `->>` messages are solid. Keep dotted `-->>` replies, solid async `-)` arrows, and dotted async `--)` arrows. When `->>` or `-->>` messages mix with `-)` or `--)` messages, label sync, reply, and async messages in their text. Never add dotted or dashed decoration.
 
 ## Review presentation
 

@@ -8,7 +8,7 @@
 
 - **Title inside the picture.** The agent puts the title at the top left of a D2 picture. A page that shows the picture needs no caption of its own.
 
-- **Legend only on request.** The agent draws no legend unless the reader asks for one.
+- **Legend only on request.** The agent draws no legend in a D2 or Mermaid diagram unless the reader asks for one. Mermaid link and message kinds are named in their labels.
 
 - **Two-way edges.** Edges with arrows at both ends get the same grey stroke as one-way edges. Before, D2 drew them blue.
 
