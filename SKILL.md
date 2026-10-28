@@ -30,11 +30,11 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse nod
 - Make one main flow from left to right with `direction: right`.
 - If every box inside a group gets the same message, draw one edge to the group. Draw one edge to each box only when the messages differ.
 - Split a box that both sends and receives on the main flow into an "in" box and an "out" box. The "in" box receives and the "out" box sends. Name them "<name> in" and "<name> out", and put both in the same group.
-- Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box. If a split box closes a loop across the page, do not split it. Write the return as a note.
+- Do not send a return path around the page. Put its two ends next to each other, or write it as a short note on the box. If a split box closes a loop across the page, do not split it. Write the return as a note. If one box is at both ends of the flow, draw it once at the start. Write the return as a note on the last box.
 - An edge must not run around a group. If it does, move the boxes or split the diagram.
-- Keep groups compact. Do not draw a frame with large empty areas. Set `grid-columns` on a group of boxes that get the same kind of edge. If ELK pushes one box far from the others, move that box out of the group.
+- Keep groups compact. Do not draw a frame with large empty areas. Set `grid-columns` on a group whose edges go to the group itself. An edge to a box inside a grid group breaks the ELK layout. If ELK pushes one box far from the others, move that box out of the group.
 - Keep edge labels to two or three words.
-- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide. If it is wider, remove boxes or split the diagram.
+- The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide. The top-left title takes its own column of about 1000 px, so keep it short. If the PNG is still too wide, put boxes that get the same edge into one group. Then remove boxes or split the diagram.
 
 **Colour carries meaning.** Give each kind of part one fill. Use the same colours in every diagram. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file, and replace the title:
 
