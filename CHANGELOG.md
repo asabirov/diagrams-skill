@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 — 2026-11-03
+
+### Added
+
+- **D2 boards.** The skill teaches `scenarios`, `steps`, `layers` and grid boards, with an example file for each in `checks/`. A `steps` board can render as an animated SVG. Amberstone `d2` evidence rejects boards, so the agent sends one PNG per board as `image` evidence.
+
 ## 0.5.0 — 2026-10-28
 
 ### Changed
