@@ -23,7 +23,7 @@ Each diagram answers one question at a readable size. Keep the editable `.d2` or
 | What is inside one part of an overview? | Overview with drill-down `layers` | D2 |
 | How do similar items compare, such as KPI tiles or a matrix? | Tiles with `grid-rows` and `grid-columns` | D2 |
 
-Use D2 for architecture and flow diagrams, because its ELK layout and sketch style read better than Mermaid flowcharts. Use Mermaid for sequence and state diagrams, and when a host must render the source itself, such as a GitHub comment. If D2 is not installed, draw a Mermaid flowchart and say so. Do not use D2 for data charts, because D2 has no data binding and no interaction. Use a chart library for them.
+Use D2 for architecture and flow diagrams, because its ELK layout and sketch style read better than Mermaid flowcharts. Use Mermaid for sequence and state diagrams, and when a host must render the source itself, such as a GitHub comment. If D2 is not installed, draw a Mermaid flowchart and say so. Use a chart library for data charts. D2 has no data binding or chart interaction.
 
 Label conditions and meaningful transitions. For alternative diagrams, reuse node IDs for the same steps. Say briefly whether the diagram shows proposed or observed behavior, and what is uncertain. Put the title inside the picture. In D2, put it at the top left, as the block below shows. In Mermaid, set `title` in the front matter. Mermaid draws it at the top centre. A page that shows the picture then needs no caption of its own. Never invent journey scores, and never treat a timeout as proof that work stopped.
 
@@ -96,14 +96,14 @@ vars: {
 }
 ```
 
-**Boards** show several views of one system. Each board follows the rules above.
+**Boards**
 
-- `scenarios`: each scenario starts from the base board. Change only what differs. Set its title with `title.label`. Example: [checks/scenarios.d2](checks/scenarios.d2).
-- `steps`: each step starts from the step before it. Add only what is new. For review, also render an animated SVG with `--animate-interval 1500`. Example: [checks/steps.d2](checks/steps.d2).
-- `layers`: a layer starts empty. Repeat the style lines, the title block and `classes` in each layer. Link the overview box with `link: layers.<name>`. Example: [checks/layers.d2](checks/layers.d2).
-- Grid: set `grid-rows` and `grid-columns` on a group of tiles with no edges. Write each tile's state in words. Example: [checks/grid.d2](checks/grid.d2).
+- `scenarios`: Each scenario inherits the base board. Set `title.label`. Example: [checks/scenarios.d2](checks/scenarios.d2).
+- `steps`: Each step inherits the previous board. Change only what differs. Render an animated SVG with `--animate-interval 1500`. Example: [checks/steps.d2](checks/steps.d2).
+- `layers`: a layer starts empty. Repeat the styles, title and `classes`. Link the overview box with `link: layers.<name>`. Example: [checks/layers.d2](checks/layers.d2).
+- Grid: Set `grid-rows` and `grid-columns` on a tile group without edges. Name each tile's state. Example: [checks/grid.d2](checks/grid.d2).
 
-An Amberstone `d2` evidence entry accepts only boxes, edges and `direction`, so it cannot show boards. To show boards in a round, send one PNG for each board as `image` evidence.
+Amberstone `d2` evidence rejects boards. Send one PNG per board as `image` evidence.
 
 ## Mermaid appearance
 
@@ -125,11 +125,14 @@ D2 needs [D2](https://d2lang.com) and the Playwright CLI with its Chromium headl
 
 ```sh
 d2 --layout elk --sketch --theme 0 --scale 2 diagram.d2 diagram.svg
-size=$(grep -o -E 'width="[0-9]+" height="[0-9]+"' diagram.svg | head -1 | tr -cs '0-9' ' ' | xargs | tr ' ' ',')
-playwright screenshot --viewport-size "$size" "file://$PWD/diagram.svg" diagram.png
+for svg in diagram.svg diagram/*.svg; do
+  [ -f "$svg" ] || continue
+  size=$(grep -o -E 'width="[0-9]+" height="[0-9]+"' "$svg" | head -1 | tr -cs '0-9' ' ' | xargs | tr ' ' ',')
+  playwright screenshot --viewport-size "$size" "file://$PWD/$svg" "${svg%.svg}.png"
+done
 ```
 
-For a file with boards, `d2` writes a folder with one SVG for each board. Check each one. `--scale 2` gives a sharp picture. The second line reads the picture size from the SVG, because `--full-page` fails on an SVG file. If Playwright asks for a newer headless shell, run `playwright install --only-shell chromium`. Look at the PNG before you send it. Check that the PNG is at most 8000 px wide, so that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and 0.8.2 and Playwright 1.63.0. Record the versions you used.
+Without animation, D2 writes one SVG per board. Use each SVG path in the screenshot commands. `--scale 2` gives a sharp picture. The `size` line reads the picture size from the SVG, because `--full-page` fails on an SVG file. If Playwright asks for a newer headless shell, run `playwright install --only-shell chromium`. Look at the PNG before you send it. Check that the PNG is at most 8000 px wide, so that the text is readable at 2000 px wide. Fix crossing lines, lines that go around the page or a group, frames with large empty areas, labels on lines or borders, and a line or frame around the page. Attach the PNG where the diagram is shown. The pictures are tested with D2 0.8.1 and 0.8.2 and Playwright 1.63.0. Record the versions you used.
 
 Mermaid requires Mermaid CLI (`mmdc`) with Node.js and the browser it drives, or another renderer. Use what is already installed. The themes are tested with Mermaid CLI 11.16.0; record the version you used.
 

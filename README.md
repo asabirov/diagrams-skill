@@ -132,15 +132,7 @@ state-dark.svg
 state-light.svg
 ```
 
-Render the D2 example with the commands in the "Render and verify" section of
-[SKILL.md](SKILL.md), from a copy of `checks/architecture.d2` named
-`diagram.d2`. Render the other D2 examples in the same way. `scenarios.d2`, `steps.d2` and
-`layers.d2` each give a folder with one SVG for each board.
-
-Ten files mean every Mermaid example parsed and rendered. They do not prove the
-diagrams look right. Open each one on a page of the matching background
-colour. Check the branch labels, the blue and teal fills, the subgraph borders
-and the text at desktop and tablet widths.
+SKILL.md contains the render commands. The scenarios, steps and layers examples produce one SVG per board.
 
 To check a change to `SKILL.md`, give the same review request to the old and
 the new version. Compare the view chosen, the source files kept, the
