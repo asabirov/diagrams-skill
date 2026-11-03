@@ -1,0 +1,55 @@
+# Layers: an overview with one drill-down board. A layer starts empty.
+direction: right
+(** -> **)[*].style.stroke: "#57606A"
+(** <-> **)[*].style.stroke: "#57606A"
+(** -> **)[*].style.font-size: 24
+(** <-> **)[*].style.font-size: 24
+**.style.font-size: 28
+
+title: "Online shop: overview" {
+  near: top-left
+  shape: text
+  style: {font-size: 40; bold: true; font-color: "#1F2328"}
+}
+
+classes: {
+  outside: {style: {fill: "#ECEAE4"; stroke: "#6B675F"; font-color: "#1F2328"}}
+  way-in: {style: {fill: "#DCEAF7"; stroke: "#2F6596"; font-color: "#1F2328"}}
+  core: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+  records: {style: {fill: "#F8EBCB"; stroke: "#8F6A12"; font-color: "#1F2328"}}
+  group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
+}
+
+browser: Customer browser {class: outside}
+shop: Shop {class: core; link: layers.shop}
+pay: Payment provider {class: outside}
+browser -> shop: HTTPS
+shop -> pay: charge card
+
+layers: {
+  shop: {
+    direction: right
+    (** -> **)[*].style.stroke: "#57606A"
+    (** <-> **)[*].style.stroke: "#57606A"
+    (** -> **)[*].style.font-size: 24
+    (** <-> **)[*].style.font-size: 24
+    **.style.font-size: 28
+    title: "Online shop: inside the shop" {
+      near: top-left
+      shape: text
+      style: {font-size: 40; bold: true; font-color: "#1F2328"}
+    }
+    classes: {
+      outside: {style: {fill: "#ECEAE4"; stroke: "#6B675F"; font-color: "#1F2328"}}
+      way-in: {style: {fill: "#DCEAF7"; stroke: "#2F6596"; font-color: "#1F2328"}}
+      core: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+      records: {style: {fill: "#F8EBCB"; stroke: "#8F6A12"; font-color: "#1F2328"}}
+      group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
+    }
+    web: Web app {class: way-in}
+    orders: Orders service {class: core}
+    db: Orders database {shape: cylinder; class: records}
+    web -> orders: place order
+    orders -> db: read and write
+  }
+}
