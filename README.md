@@ -58,6 +58,7 @@ shares verified images.
 | `assets/light.json`, `assets/dark.json` | Mermaid CLI configuration for each theme |
 | `checks/*.mmd` | Five example diagrams about a fictional online shop, one per view, used to check a theme or renderer change |
 | `checks/architecture.d2` | The architecture example in D2, with the colour palette and the title inside the picture |
+| `checks/scenarios.d2`, `checks/steps.d2`, `checks/layers.d2`, `checks/grid.d2` | One D2 example for each kind of board: variants, stages in order, a drill-down and a tiled board |
 | `CHANGELOG.md` | What changed in each release |
 | `.github/workflows/notify-claude-2.yml` | Tells agents-home about each merge to `main`, so that it can move its pin of this skill |
 
@@ -131,14 +132,7 @@ state-dark.svg
 state-light.svg
 ```
 
-Render the D2 example with the commands in the "Render and verify" section of
-[SKILL.md](SKILL.md), from a copy of `checks/architecture.d2` named
-`diagram.d2`.
-
-Ten files mean every Mermaid example parsed and rendered. They do not prove the
-diagrams look right. Open each one on a page of the matching background
-colour. Check the branch labels, the blue and teal fills, the subgraph borders
-and the text at desktop and tablet widths.
+SKILL.md contains the render commands. The scenarios, steps and layers examples produce one SVG per board.
 
 To check a change to `SKILL.md`, give the same review request to the old and
 the new version. Compare the view chosen, the source files kept, the

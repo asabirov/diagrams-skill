@@ -1,0 +1,38 @@
+# Steps: stages in order. Each step starts from the step before it.
+direction: right
+(** -> **)[*].style.stroke: "#57606A"
+(** <-> **)[*].style.stroke: "#57606A"
+(** -> **)[*].style.font-size: 24
+(** <-> **)[*].style.font-size: 24
+**.style.font-size: 28
+
+title: "Online shop: order step 1, placed" {
+  near: top-left
+  shape: text
+  style: {font-size: 40; bold: true; font-color: "#1F2328"}
+}
+
+classes: {
+  outside: {style: {fill: "#ECEAE4"; stroke: "#6B675F"; font-color: "#1F2328"}}
+  way-in: {style: {fill: "#DCEAF7"; stroke: "#2F6596"; font-color: "#1F2328"}}
+  core: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+  records: {style: {fill: "#F8EBCB"; stroke: "#8F6A12"; font-color: "#1F2328"}}
+  group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
+}
+
+browser: Customer browser {class: outside}
+orders: Orders service {class: core}
+browser -> orders: place order
+
+steps: {
+  charged: {
+    title.label: "Online shop: order step 2, charged"
+    pay: Payment provider {class: outside}
+    orders -> pay: charge card
+  }
+  shipped: {
+    title.label: "Online shop: order step 3, shipped"
+    warehouse: Warehouse {class: core}
+    orders -> warehouse: ship order
+  }
+}

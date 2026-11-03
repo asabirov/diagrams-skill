@@ -1,0 +1,27 @@
+# Grid board: tiles in fixed rows and columns, with no edges.
+**.style.font-size: 28
+
+title: "Online shop: order health this week" {
+  near: top-left
+  shape: text
+  style: {font-size: 40; bold: true; font-color: "#1F2328"}
+}
+
+classes: {
+  ok: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+  watch: {style: {fill: "#F8EBCB"; stroke: "#8F6A12"; font-color: "#1F2328"}}
+  group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
+}
+
+board: Order health {
+  class: group
+  grid-rows: 2
+  grid-columns: 3
+  grid-gap: 24
+  placed: "Orders placed\nOK" {class: ok}
+  paid: "Orders paid\nOK" {class: ok}
+  refunds: "Refunds\nWatch" {class: watch}
+  shipped: "Orders shipped\nOK" {class: ok}
+  late: "Late deliveries\nWatch" {class: watch}
+  support: "Support tickets\nOK" {class: ok}
+}
