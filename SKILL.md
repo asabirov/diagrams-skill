@@ -103,7 +103,7 @@ vars: {
 - `layers`: a layer starts empty. Repeat the style lines, the title block and `classes` in each layer. Link the overview box with `link: layers.<name>`. Example: [checks/layers.d2](checks/layers.d2).
 - Grid: set `grid-rows` and `grid-columns` on a group of tiles with no edges. Write each tile's state in words. Example: [checks/grid.d2](checks/grid.d2).
 
-AMBERSTONE_LINE
+An Amberstone `d2` evidence entry accepts only boxes, edges and `direction`, so it cannot show boards. To show boards in a round, send one PNG for each board as `image` evidence.
 
 ## Mermaid appearance
 
