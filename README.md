@@ -68,7 +68,7 @@ Install the latest release for Claude Code and Codex with the
 [skills CLI](https://github.com/vercel-labs/skills):
 
 ```sh
-DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.6.0 --skill diagrams --agent claude-code codex --global
+DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.7.0 --skill diagrams --agent claude-code codex --global
 ```
 
 `DO_NOT_TRACK=1` turns off the CLI's telemetry. To update or roll back, run
