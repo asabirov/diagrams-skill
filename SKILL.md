@@ -2,7 +2,7 @@
 name: diagrams
 description: Use when preparing diagrams for architecture, flows, states, conditional logic, interactions, data models or customer journeys that a human needs to review. Draws every diagram with D2 in the hand-drawn style, renders it to PNG and checks the picture before it is shared. Not for screenshots, UI prototypes, data charts, or simple facts clearer in prose.
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
 ---
 
 # Diagrams
