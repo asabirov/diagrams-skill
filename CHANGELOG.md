@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **Every diagram in D2.** The skill draws sequence diagrams with `shape: sequence_diagram` and state diagrams as D2 boxes and edges. It no longer uses Mermaid. The Mermaid examples and theme files are removed. `checks/` has a D2 sequence example and a D2 state example.
+
+### Added
+
+- **All D2 features.** `references/features.md` teaches `person`, `sql_table`, `class`, code, Markdown and LaTeX labels, `near`, icons, tooltips, links, globs, `vars` and reserved names. The check loop runs `d2 fmt` and `d2 validate` before each render.
+- **Pictures on GitHub.** For a host that cannot render D2, the agent attaches the PNG with the `github-attachments` skill.
+
+### Credit
+
+- The view choice, the feature notes and the two-pass check loop adapt text from [bassfredes/d2-diagrams-skill](https://github.com/bassfredes/d2-diagrams-skill), MIT, © 2026 Bastian Fredes. Its notice is in [LICENSE](LICENSE).
+
 ## 0.6.0 — 2026-11-03
 
 ### Added
