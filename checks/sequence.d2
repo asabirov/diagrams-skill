@@ -1,0 +1,36 @@
+# Sequence: who sends what, in order. A sequence diagram ignores direction and ELK.
+(** -> **)[*].style.stroke: "#57606A"
+(** -> **)[*].style.font-size: 24
+**.style.font-size: 28
+
+classes: {
+  outside: {style: {fill: "#ECEAE4"; stroke: "#6B675F"; font-color: "#1F2328"}}
+  core: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+  group: {style: {fill: "#FAFAF8"; stroke: "#8C959F"; font-color: "#1F2328"}}
+}
+
+# The title is the label of the sequence diagram, because a title with near
+# takes its own column and leaves the left side empty.
+payment: "Card payment with a decline path" {
+  shape: sequence_diagram
+  label.near: outside-top-left
+  style: {font-size: 40; bold: true; font-color: "#1F2328"; stroke: transparent; fill: transparent}
+
+  customer: Customer {shape: person; class: outside}
+  shop: Shop {class: core}
+  provider: Payment provider {class: outside}
+
+  customer -> shop: Pay for order
+  shop -> provider: Charge card
+
+  approved: Approved {
+    class: group
+    provider -> shop: Approved {style.stroke-dash: 3}
+    shop -> customer: Show order confirmation {style.stroke-dash: 3}
+  }
+  declined: Declined {
+    class: group
+    provider -> shop: Declined {style.stroke-dash: 3}
+    shop -> customer: "Ask for another card,\nkeep basket" {style.stroke-dash: 3}
+  }
+}

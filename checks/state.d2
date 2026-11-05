@@ -1,0 +1,35 @@
+# State: boxes for states, labelled edges for transitions.
+direction: right
+(** -> **)[*].style.stroke: "#57606A"
+(** -> **)[*].style.font-size: 24
+**.style.font-size: 28
+
+title: "Order lifecycle" {
+  near: top-left
+  shape: text
+  style: {font-size: 40; bold: true; font-color: "#1F2328"}
+}
+
+classes: {
+  # state: a state that the order can be in
+  state: {style: {fill: "#DDF0E4"; stroke: "#2E7350"; font-color: "#1F2328"}}
+  # end: a final state
+  end: {style: {fill: "#ECEAE4"; stroke: "#6B675F"; font-color: "#1F2328"; double-border: true}}
+  # start: the entry point, a small filled circle with no label
+  start: {label: ""; shape: circle; width: 28; style: {fill: "#1F2328"; stroke: "#1F2328"}}
+}
+
+start: {class: start}
+placed: Placed {class: state}
+paid: Paid {class: state}
+shipped: Shipped {class: state}
+delivered: Delivered {class: end}
+cancelled: Cancelled {class: end}
+refunded: Refunded {class: end}
+
+start -> placed
+placed -> paid: payment\napproved
+placed -> cancelled: customer\ncancels
+paid -> shipped: parcel handed\nto courier
+paid -> refunded: refund\nissued
+shipped -> delivered: courier\nconfirms
