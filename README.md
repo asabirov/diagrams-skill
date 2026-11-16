@@ -56,7 +56,6 @@ commit.
 | `checks/sequence.d2`, `checks/state.d2` | A sequence diagram with alternative paths, and a state diagram with start and end states |
 | `checks/scenarios.d2`, `checks/steps.d2`, `checks/layers.d2`, `checks/grid.d2` | One example for each kind of board: variants, stages in order, a drill-down and a tiled board |
 | `CHANGELOG.md` | What changed in each release |
-| `.github/workflows/notify-claude-2.yml` | Tells agents-home about each merge to `main`, so that it can move its pin of this skill |
 
 The examples are about a fictional online shop. The skill version is recorded
 in `metadata.version` in [SKILL.md](SKILL.md). [CHANGELOG.md](CHANGELOG.md)
