@@ -8,6 +8,11 @@ conditional logic, an exchange of messages, a data model or a customer journey,
 the agent picks the diagram type that fits the question. It draws every
 diagram with D2, renders it to PNG and checks the picture before it shows it.
 
+![A state diagram titled Order lifecycle. An order goes from Placed to Paid, Shipped and Delivered, or ends as Cancelled or Refunded.](assets/order-states.png)
+
+This is the render of [`checks/state.d2`](checks/state.d2), made with D2 0.9.0
+and the render command in [SKILL.md](SKILL.md).
+
 ## Why it exists, and what it turned down
 
 Left alone, an agent tends to draw a flowchart for everything, use the default
@@ -55,6 +60,7 @@ commit.
 | `checks/architecture.d2` | A box diagram with groups, the palette and the title inside the picture |
 | `checks/sequence.d2`, `checks/state.d2` | A sequence diagram with alternative paths, and a state diagram with start and end states |
 | `checks/scenarios.d2`, `checks/steps.d2`, `checks/layers.d2`, `checks/grid.d2` | One example for each kind of board: variants, stages in order, a drill-down and a tiled board |
+| `assets/order-states.png` | The rendered state example that this README shows |
 | `CHANGELOG.md` | What changed in each release |
 
 The examples are about a fictional online shop. The skill version is recorded
