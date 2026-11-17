@@ -69,12 +69,12 @@ records the changes for each version.
 
 ## How to run and verify it
 
-Install the latest release for your agents with the
-[skills CLI](https://github.com/vercel-labs/skills). It finds the agents that
-are installed. To choose them yourself, add `--agent <name>`:
+Install the latest release for all agents with the
+[skills CLI](https://github.com/vercel-labs/skills). To install for some
+agents only, replace `'*'` with their names:
 
 ```sh
-DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.7.0 --skill diagrams --global
+DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.7.0 --skill diagrams --agent '*' --global
 ```
 
 `DO_NOT_TRACK=1` turns off the CLI's telemetry. To update or roll back, run
