@@ -69,11 +69,12 @@ records the changes for each version.
 
 ## How to run and verify it
 
-Install the latest release for Claude Code and Codex with the
-[skills CLI](https://github.com/vercel-labs/skills):
+Install the latest release for all agents with the
+[skills CLI](https://github.com/vercel-labs/skills). To install for some
+agents only, replace `'*'` with their names:
 
 ```sh
-DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.7.0 --skill diagrams --agent claude-code codex --global
+DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.7.0 --skill diagrams --agent '*' --global
 ```
 
 `DO_NOT_TRACK=1` turns off the CLI's telemetry. To update or roll back, run
@@ -84,7 +85,6 @@ Dependencies:
 | Dependency | Needed for |
 | --- | --- |
 | Node.js, npm and Git | Running the install command |
-| Claude Code or Codex | Running the skill |
 | [D2](https://d2lang.com) (tested with 0.8.1) | Drawing every diagram. Without it the agent can write diagrams but cannot render or check them |
 | [Playwright CLI](https://playwright.dev) with its Chromium headless shell (tested with 1.63.0) | Turning a D2 SVG into a PNG, because D2's own PNG export installs its own Chromium |
 | Geist font (optional) | Diagram text. Arial is used when Geist is not installed |
