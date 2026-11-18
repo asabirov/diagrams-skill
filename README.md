@@ -47,7 +47,7 @@ DO_NOT_TRACK=1 npx skills update diagrams --global
 
 `DO_NOT_TRACK=1` turns off the telemetry of the skills CLI. The CLI needs Node.js, npm and Git.
 
-The CLI finds the installed agents. To choose agents, add `--agent <name>`. `DO_NOT_TRACK=1` turns off the CLI's telemetry.
+The CLI finds the installed agents. To choose agents, add `--agent <name>`.
 
 | Dependency | Needed for |
 | --- | --- |
