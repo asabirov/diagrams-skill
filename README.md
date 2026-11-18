@@ -31,32 +31,23 @@ Left alone, an agent tends to draw a flowchart for everything, use the default s
 | The picture is the output | Hosts such as GitHub do not render D2. The agent shares the checked PNG, and attaches it to an issue or a PR without a commit. |
 | Rare features load on demand | The agent reads the features reference only when a diagram needs it. |
 
-## What's where
-
-| Path | Owns |
-| --- | --- |
-| [SKILL.md](SKILL.md) | The rules the agent follows: plan, view choice, house style, layout, render and check. Also the skill version, in `metadata.version` |
-| [references/features.md](references/features.md) | Tables, classes, icons, links, tooltips, Markdown and LaTeX labels, globs, variables and reserved names |
-| [checks/README.md](checks/README.md) | How to check a renderer or style change |
-| [checks/architecture.d2](checks/architecture.d2) | A box diagram with groups, the palette and the title inside the picture |
-| [checks/flow.d2](checks/flow.d2), [checks/journey.d2](checks/journey.d2) | A flow with conditions, and a customer journey that starts at a person |
-| [checks/tables.d2](checks/tables.d2), [checks/classes.d2](checks/classes.d2) | A data model with joined tables, and a code structure with classes |
-| [checks/sequence.d2](checks/sequence.d2), [checks/state.d2](checks/state.d2) | A sequence diagram with alternative paths, and a state diagram with start and end states |
-| [checks/scenarios.d2](checks/scenarios.d2), [checks/steps.d2](checks/steps.d2), [checks/layers.d2](checks/layers.d2), [checks/grid.d2](checks/grid.d2) | One example for each kind of board: variants, stages in order, a drill-down and a tiled board |
-| [docs/examples.md](docs/examples.md) | One rendered picture for each diagram type |
-| [assets/](assets/) | The rendered examples that the examples page shows |
-| [docs/diagrams/](docs/diagrams/) | The diagram at the top of this README and its D2 source |
-| [CHANGELOG.md](CHANGELOG.md) | What changed in each release |
-
 ## How to run and verify it
 
-Install the latest release with the [skills CLI](https://github.com/vercel-labs/skills):
+Install the latest version:
 
 ```sh
-DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.8.1 --skill diagrams --global
+DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill --skill diagrams --agent claude-code codex --global
 ```
 
-The CLI finds the installed agents. To choose agents, add `--agent <name>`. `DO_NOT_TRACK=1` turns off the CLI's telemetry. To update or roll back, run the same command with the release tag you want.
+Update it later:
+
+```sh
+DO_NOT_TRACK=1 npx skills update diagrams --global
+```
+
+`DO_NOT_TRACK=1` turns off the telemetry of the skills CLI. The CLI needs Node.js, npm and Git.
+
+The CLI finds the installed agents. To choose agents, add `--agent <name>`. `DO_NOT_TRACK=1` turns off the CLI's telemetry.
 
 | Dependency | Needed for |
 | --- | --- |
