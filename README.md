@@ -13,6 +13,24 @@ diagram with D2, renders it to PNG and checks the picture before it shows it.
 This is the render of [`checks/state.d2`](checks/state.d2), made with D2 0.9.0
 and the render command in [SKILL.md](SKILL.md).
 
+## What it can draw
+
+Each picture is a render of the example in [`checks/`](checks/).
+
+| Type | Question it answers | Picture |
+| --- | --- | --- |
+| [Box diagram](checks/architecture.d2) | What connects, and where are the boundaries? | ![A box diagram of an online shop, with a Shop group and an External providers group.](assets/examples/architecture.png) |
+| [Flow](checks/flow.d2) | Which conditions lead to which outcomes? | ![A refund flow with two yes or no questions and three outcomes.](assets/examples/flow.png) |
+| [Customer journey](checks/journey.d2) | What does the customer do, including interruptions? | ![A checkout journey that starts at a customer and has a declined card path.](assets/examples/journey.png) |
+| [State diagram](checks/state.d2) | Which states and transitions are possible? | ![An order goes from Placed to Paid, Shipped and Delivered, or ends as Cancelled or Refunded.](assets/order-states.png) |
+| [Sequence diagram](checks/sequence.d2) | Who sends what, in what order? | ![A card payment between a customer, a shop and a payment provider, with approved and declined paths.](assets/examples/sequence.png) |
+| [Data tables](checks/tables.d2) | Which tables hold the data, and how do they join? | ![Three joined tables: order items, orders and customers.](assets/examples/tables.png) |
+| [Code structure](checks/classes.d2) | How is the code structured? | ![Three classes: OrderService, Order and PaymentClient.](assets/examples/classes.png) |
+| [Scenarios](checks/scenarios.d2) | How do variants of one system differ? | ![The payment-down scenario of an online shop, with a retry queue.](assets/examples/scenarios.png) |
+| [Steps](checks/steps.d2) | What happens at each stage, in order? | ![The shipped step of an order, with a warehouse.](assets/examples/steps.png) |
+| [Layers](checks/layers.d2) | What is inside one part of an overview? | ![An overview board with a Shop box that links to a detail board.](assets/examples/layers.png) |
+| [Tiles](checks/grid.d2) | How do similar items compare? | ![Six order health tiles, four marked OK and two marked Watch.](assets/examples/grid.png) |
+
 ## Why it exists, and what it turned down
 
 Left alone, an agent tends to draw a flowchart for everything, use the default
@@ -58,9 +76,11 @@ commit.
 | `SKILL.md` | The rules the agent follows: plan, view choice, house style, layout, render and check |
 | `references/features.md` | Tables, classes, icons, links, tooltips, Markdown and LaTeX labels, globs, variables and reserved names |
 | `checks/architecture.d2` | A box diagram with groups, the palette and the title inside the picture |
+| `checks/flow.d2`, `checks/journey.d2` | A flow with conditions, and a customer journey that starts at a person |
+| `checks/tables.d2`, `checks/classes.d2` | A data model with joined tables, and a code structure with classes |
 | `checks/sequence.d2`, `checks/state.d2` | A sequence diagram with alternative paths, and a state diagram with start and end states |
 | `checks/scenarios.d2`, `checks/steps.d2`, `checks/layers.d2`, `checks/grid.d2` | One example for each kind of board: variants, stages in order, a drill-down and a tiled board |
-| `assets/order-states.png` | The rendered state example that this README shows |
+| `assets/order-states.png`, `assets/examples/` | The rendered examples that this README shows |
 | `CHANGELOG.md` | What changed in each release |
 
 The examples are about a fictional online shop. The skill version is recorded
@@ -85,8 +105,8 @@ Dependencies:
 | Dependency | Needed for |
 | --- | --- |
 | Node.js, npm and Git | Running the install command |
-| [D2](https://d2lang.com) (tested with 0.8.1) | Drawing every diagram. Without it the agent can write diagrams but cannot render or check them |
-| [Playwright CLI](https://playwright.dev) with its Chromium headless shell (tested with 1.63.0) | Turning a D2 SVG into a PNG, because D2's own PNG export installs its own Chromium |
+| [D2](https://d2lang.com) (tested with 0.9.0) | Drawing every diagram. Without it the agent can write diagrams but cannot render or check them |
+| [Playwright CLI](https://playwright.dev) with its Chromium headless shell (tested with 1.65.0) | Turning a D2 SVG into a PNG, because D2's own PNG export installs its own Chromium |
 | Geist font (optional) | Diagram text. Arial is used when Geist is not installed |
 
 Then start a new agent session and ask for a diagram, for example "Show the

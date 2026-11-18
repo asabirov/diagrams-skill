@@ -47,7 +47,7 @@ Label conditions and meaningful transitions. For alternative diagrams, reuse the
 **House style.** Give each kind of part one fill. Use the same colours in every diagram. Soft fills with dark text stay readable in the sketch style. Name each part in words too, because colour alone is not enough. Paste this block at the top of the `.d2` file, and replace the title:
 
 ```d2
-direction: right
+direction: down
 (** -> **)[*].style.stroke: "#57606A"
 (** <-> **)[*].style.stroke: "#57606A"
 (** -> **)[*].style.font-size: 24
@@ -55,7 +55,7 @@ direction: right
 **.style.font-size: 28
 
 title: "Orders: how a request is stored" {
-  near: top-left
+  near: top-center
   shape: text
   style: {font-size: 40; bold: true; font-color: "#1F2328"}
 }
@@ -91,9 +91,10 @@ vars: {
 
 ## Box diagrams
 
-Most long or looping lines come from the shape of the diagram, not from the tool. [checks/architecture.d2](checks/architecture.d2) is a full example. The rules in this file are complete without it.
+Most long or looping lines come from the shape of the diagram, not from the tool. [checks/architecture.d2](checks/architecture.d2) is a full example. [checks/flow.d2](checks/flow.d2) shows conditions, and [checks/journey.d2](checks/journey.d2) shows a customer journey. The rules in this file are complete without them.
 
-- Make one main flow from left to right with `direction: right`.
+- Make one main flow, and keep the picture close to square. Start with `direction: down`. Use `direction: right` only when labels collide or lines cross in the top-to-bottom picture.
+- The rules below use left and right for a `direction: right` picture. For `direction: down`, read them as top and bottom.
 - If every box inside a group gets or sends the same message, draw one edge to or from the group. Draw one edge to each box only when the messages differ.
 - A box that receives from the left and sends to the right is a normal step on the main flow. Do not split it. A gateway, a sender or an outbox is such a step.
 - Split a box only when one of its edges must go back to the left, to a box earlier in the main flow. Make an "in" box for the edges that it receives and an "out" box for the edges that it sends. Name them "<name> in" and "<name> out".
@@ -108,7 +109,7 @@ Most long or looping lines come from the shape of the diagram, not from the tool
 - The text must stay readable when the picture is 2000 px wide. At `--scale 2`, keep the PNG at most 8000 px wide.
 - Keep every word of every label that the facts give. Never shorten a label to fit the width. If the PNG is too wide, do these steps in order, and render again after each step:
   1. Break each label of more than two words into lines of one to three words with `\n`.
-  2. Shorten the title. The top-left title takes its own column as wide as the title.
+  2. Shorten the title. A centred title that is wider than the diagram makes the picture wider.
   3. Put boxes that get the same edge into one group.
   4. Give a grid group of 4 boxes two rows. A group of 3 boxes stays in one row.
   5. Split the diagram into two diagrams.
@@ -135,7 +136,7 @@ Put the actors and messages in a container with `shape: sequence_diagram`. Examp
 
 - D2 draws the actors from left to right in the order of their first mention. It draws the messages from top to bottom in the order of the source.
 - A sequence diagram ignores `direction` and the ELK layout.
-- A `near` title takes its own column on the left. Use the container label as the title: set `label.near: outside-top-left`, the title font, and a transparent fill and stroke on the container.
+- Do not use a `near` title here. Use the container label as the title: set `label.near: outside-top-left`, the title font, and a transparent fill and stroke on the container.
 - Draw replies with `style.stroke-dash: 3`.
 - Put alternative paths in named groups inside the container, such as `approved: Approved {class: group; ...}`.
 - Write `shop.t -> provider: Charge card` to draw an activation span on the `shop` lifeline.
@@ -169,7 +170,7 @@ done
 - Without animation, D2 writes one SVG per board into a folder.
 - `--scale 2` gives a sharp picture. The `size` line reads the picture size from the SVG, because `--full-page` fails on an SVG file.
 - If Playwright asks for a newer headless shell, run `playwright install --only-shell chromium`.
-- The pictures are tested with D2 0.8.1 and 0.8.2 and Playwright 1.63.0. Record the versions that you used.
+- The pictures are tested with D2 0.9.0 and Playwright 1.65.0. Record the versions that you used.
 
 Open each PNG and check it in two passes.
 
@@ -182,7 +183,8 @@ Open each PNG and check it in two passes.
 - cut or overlapping text;
 - one crowded area next to an empty one, or a frame with large empty areas;
 - a line or a frame around the page;
-- a PNG wider than 8000 px.
+- a PNG wider than 8000 px;
+- a picture more than about three times as wide as it is tall, unless the labels collide in the other direction.
 
 Fix a defect through the source, not through positions. Change the `direction`, change the groups, shorten edge labels, join parallel edges into one labelled edge, or move a part out of the flow with `near`. Then render and check again. Plan for two to four cycles. The diagram is done when both passes find nothing that needs an explanation. A diagram that only compiles is not checked. Mark it as unverified.
 
