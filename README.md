@@ -6,17 +6,9 @@ Readable diagrams with a consistent visual style, all drawn in D2 in a hand-draw
 
 <img src="docs/diagrams/how-it-works.png" alt="An agent plans a requested diagram, writes the D2 source, renders a PNG and checks it. If the check fails, the agent fixes the source and renders again. If it passes, the agent shares the PNG and the source." width="420">
 
-This is an agent skill. When someone has to review architecture, states, conditional logic, an exchange of messages, a data model or a customer journey, the agent picks the diagram type that fits the question. The skill covers 11 types. Each picture is a render of its source in [checks/](checks/), made with D2 0.9.0 and the render command in [SKILL.md](SKILL.md). The examples are about a fictional online shop.
+This is an agent skill. When someone has to review architecture, states, conditional logic, an exchange of messages, a data model or a customer journey, the agent picks the diagram type that fits the question.
 
-**[Box diagram](checks/architecture.d2)**<br><img src="assets/examples/architecture.png" alt="A box diagram of an online shop, with a Shop group and an External providers group." width="830">
-
-**[State diagram](checks/state.d2)**<br><img src="assets/order-states.png" alt="An order goes from Placed to Paid, Shipped and Delivered, or ends as Cancelled or Refunded." width="830">
-
-| | | |
-| --- | --- | --- |
-| **[Flow](checks/flow.d2)**<br><img src="assets/examples/flow.png" alt="A refund flow with two yes or no questions and three outcomes." width="270"> | **[Customer journey](checks/journey.d2)**<br><img src="assets/examples/journey.png" alt="A checkout journey that starts at a customer and has a declined card path." width="270"> | **[Sequence diagram](checks/sequence.d2)**<br><img src="assets/examples/sequence.png" alt="A card payment between a customer, a shop and a payment provider, with approved and declined paths." width="270"> |
-| **[Data tables](checks/tables.d2)**<br><img src="assets/examples/tables.png" alt="Three joined tables: order items, orders and customers." width="270"> | **[Code structure](checks/classes.d2)**<br><img src="assets/examples/classes.png" alt="Three classes: OrderService, Order and PaymentClient." width="270"> | **[Scenarios](checks/scenarios.d2)**<br><img src="assets/examples/scenarios.png" alt="The payment-down scenario of an online shop, with a retry queue." width="270"> |
-| **[Steps](checks/steps.d2)**<br><img src="assets/examples/steps.png" alt="The shipped step of an order, with a warehouse." width="270"> | **[Layers](checks/layers.d2)**<br><img src="assets/examples/layers.png" alt="An overview board with a Shop box that links to a detail board." width="270"> | **[Tiles](checks/grid.d2)**<br><img src="assets/examples/grid.png" alt="Six order health tiles, four marked OK and two marked Watch." width="270"> |
+**[See an example of all 11 diagram types](docs/examples.md)**
 
 ## Why it exists, and what it turned down
 
@@ -51,7 +43,8 @@ Left alone, an agent tends to draw a flowchart for everything, use the default s
 | [checks/tables.d2](checks/tables.d2), [checks/classes.d2](checks/classes.d2) | A data model with joined tables, and a code structure with classes |
 | [checks/sequence.d2](checks/sequence.d2), [checks/state.d2](checks/state.d2) | A sequence diagram with alternative paths, and a state diagram with start and end states |
 | [checks/scenarios.d2](checks/scenarios.d2), [checks/steps.d2](checks/steps.d2), [checks/layers.d2](checks/layers.d2), [checks/grid.d2](checks/grid.d2) | One example for each kind of board: variants, stages in order, a drill-down and a tiled board |
-| [assets/](assets/) | The rendered examples that this README shows |
+| [docs/examples.md](docs/examples.md) | One rendered picture for each diagram type |
+| [assets/](assets/) | The rendered examples that the examples page shows |
 | [docs/diagrams/](docs/diagrams/) | The diagram at the top of this README and its D2 source |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each release |
 

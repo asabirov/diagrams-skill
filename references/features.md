@@ -40,9 +40,7 @@ Order: {
 }
 ```
 
-Full example: [checks/classes.d2](../checks/classes.d2).
-
-A `sql_table` and a `class` have a dark header by default. Set `style.fill` on the shape to change the header colour.
+A `sql_table` and a `class` have a dark header by default. Set `style.fill` on the shape to change the header colour. On a `class`, the fill also colours the member names, so a pale fill makes them unreadable. For a code structure in the house colours, use `shape: sql_table` with a pale `style.fill`, a white `style.stroke` and one row for each member. Its header is one row high, so set a larger `style.font-size` to make it stand out. Full example: [checks/classes.d2](../checks/classes.d2).
 
 **Code.** Put a short code sample in a block with its language name.
 

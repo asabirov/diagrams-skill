@@ -26,7 +26,7 @@ Decide these four things before you write the source:
 | Which states and transitions are possible? | State diagram | "State diagrams" below |
 | Who sends what, in what order? | Sequence diagram | "Sequence diagrams" below |
 | Which tables hold the data, and how do they join? | `shape: sql_table` | [references/features.md](references/features.md) |
-| How is the code structured? | `shape: class` | [references/features.md](references/features.md) |
+| How is the code structured? | `shape: sql_table`, with one row for each member | [references/features.md](references/features.md) |
 | How do variants of one system differ? | `scenarios` | "Boards" below |
 | What happens at each stage, in order? | `steps`, as an animated SVG | "Boards" below |
 | What is inside one part of an overview? | Overview with drill-down `layers` | "Boards" below |
