@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.1 — 2026-11-18
+
+### Fixed
+
+- **Code structure rule.** `references/features.md` now gives the same rule as `SKILL.md`: draw a code structure with `shape: sql_table`. In version 0.8.0, `references/features.md` still named `shape: class` for it.
+
 ## 0.8.0 — 2026-11-18
 
 ### Changed

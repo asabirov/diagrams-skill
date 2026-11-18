@@ -53,7 +53,7 @@ Left alone, an agent tends to draw a flowchart for everything, use the default s
 Install the latest release with the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```sh
-DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.8.0 --skill diagrams --global
+DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill/tree/v0.8.1 --skill diagrams --global
 ```
 
 The CLI finds the installed agents. To choose agents, add `--agent <name>`. `DO_NOT_TRACK=1` turns off the CLI's telemetry. To update or roll back, run the same command with the release tag you want.
