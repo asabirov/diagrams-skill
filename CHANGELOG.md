@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.8.0 — 2026-11-18
+
+### Changed
+
+- **Balanced diagrams.** Each title sits in the centre above its diagram. Each diagram starts from top to bottom, and runs from left to right only when labels collide or lines cross.
+- **Code structure in the house colours.** The skill draws a code structure with `shape: sql_table` and a pale header, because the header colour of `shape: class` also colours the member names.
+- **One tested version.** The skill, the README and the check guide state D2 0.9.0 and Playwright 1.65.0.
+- **README.** It opens with a diagram of how the skill works. The install command no longer sets `--agent`, so the skills CLI finds the installed agents.
+
+### Added
+
+- **An example for every diagram type.** `checks/` has new flow, customer journey, data tables and code structure examples. `docs/examples.md` shows a rendered picture of all 11 types.
+
+### Removed
+
+- **Release notification workflow.** The repository no longer sends a notification after each merge to the main branch.
+
 ## 0.7.0 — 2026-11-05
 
 ### Changed
