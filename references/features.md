@@ -28,7 +28,7 @@ users.id <-> orders.user_id
 
 The constraints show as `PK`, `FK` and `UNQ`. Full example: [checks/tables.d2](../checks/tables.d2).
 
-**Class.** Use `shape: class` for a code structure. A `+` member is public, `-` is private and `#` is protected. Put `#` members in quotes, because an unquoted `#` starts a comment. A member with `()` is a method, and its value is the return type.
+**Class.** `shape: class` draws one class with a dark header. For a code structure, use `shape: sql_table`, as the end of this section says. In a `class`, a `+` member is public, `-` is private and `#` is protected. Put `#` members in quotes, because an unquoted `#` starts a comment. A member with `()` is a method, and its value is the return type.
 
 ```d2
 Order: {
