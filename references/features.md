@@ -1,6 +1,6 @@
 # D2 features
 
-Read this file when a diagram needs a shape or a feature that SKILL.md does not show. Each snippet renders with D2 0.8.1 and the render command in SKILL.md. Keep the house style block of SKILL.md at the top of the file.
+Read this file when a diagram needs a shape or a feature that SKILL.md does not show. Each snippet renders with D2 0.9.0 and the render command in SKILL.md. Keep the house style block of SKILL.md at the top of the file.
 
 ## Special shapes
 
@@ -26,7 +26,7 @@ orders: {
 users.id <-> orders.user_id
 ```
 
-The constraints show as `PK`, `FK` and `UNQ`.
+The constraints show as `PK`, `FK` and `UNQ`. Full example: [checks/tables.d2](../checks/tables.d2).
 
 **Class.** Use `shape: class` for a code structure. A `+` member is public, `-` is private and `#` is protected. Put `#` members in quotes, because an unquoted `#` starts a comment. A member with `()` is a method, and its value is the return type.
 
@@ -40,7 +40,7 @@ Order: {
 }
 ```
 
-A `sql_table` and a `class` have a dark header by default. Set `style.fill` on the shape to change the header colour.
+A `sql_table` and a `class` have a dark header by default. Set `style.fill` on the shape to change the header colour. On a `class`, the fill also colours the member names, so a pale fill makes them unreadable. For a code structure in the house colours, use `shape: sql_table` with a pale `style.fill`, a white `style.stroke` and one row for each member. Its header is one row high, so set a larger `style.font-size` to make it stand out. Full example: [checks/classes.d2](../checks/classes.d2).
 
 **Code.** Put a short code sample in a block with its language name.
 

@@ -20,13 +20,16 @@ done
 (cd "$out" && find . -name '*.png' | sort)
 ```
 
-Output on 2026-11-05:
+Output on 2026-11-18:
 
 ```text
-v0.8.1-HEAD
-Version 1.63.0
+v0.9.0
+Version 1.65.0
 ./architecture.png
+./classes.png
+./flow.png
 ./grid.png
+./journey.png
 ./layers/index.png
 ./layers/shop.png
 ./scenarios/index.png
@@ -36,6 +39,7 @@ Version 1.63.0
 ./steps/charged.png
 ./steps/index.png
 ./steps/shipped.png
+./tables.png
 ```
 
 The scenarios, steps and layers examples give one PNG per board. Open each PNG
