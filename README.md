@@ -36,7 +36,7 @@ Left alone, an agent tends to draw a flowchart for everything, use the default s
 Install the latest version:
 
 ```sh
-DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill --skill diagrams --agent claude-code codex --global
+DO_NOT_TRACK=1 npx skills add https://github.com/asabirov/diagrams-skill --skill diagrams --agent claude-code codex --global -y
 ```
 
 Update it later:
